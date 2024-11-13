@@ -1,0 +1,1186 @@
+//
+// ------- Annotated listing with optimization reports for "/home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c" -------
+//
+//INLINING OPTION VALUES:
+//  -inline-factor: 100
+//  -inline-min-size: 30
+//  -inline-max-size: 230
+//  -inline-max-total-size: 2000
+//  -inline-max-per-routine: disabled
+//  -inline-max-per-compile: disabled
+//
+1	#include <string.h>
+2	#include "syspara.h"
+3	
+4	void input_para(FILE *fpin)
+5	{
+//INLINE REPORT: (input_para(FILE *)) [1] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(5,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(5,1):remark #34051: REGISTER ALLOCATION : [input_para] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:5
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   10[ rax rdx rcx rbx rsi rdi r12-r15]
+//        
+//    Routine temporaries
+//        Total         :     162
+//            Global    :      14
+//            Local     :     148
+//        Regenerable   :     119
+//        Spilled       :       5
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      32 bytes*
+//            Reads     :       4 [3.68e-02 ~ 0.0%]
+//            Writes    :       4 [3.68e-02 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+6		int i,ii;
+7	
+8		fscanf(fpin,"%d",&simtype);
+9		fscanf(fpin,"%d",&cluster);
+10		fscanf(fpin,"%d",&Nx1);
+11		fscanf(fpin,"%d",&Nx2);
+12		fscanf(fpin,"%d",&Nx3);
+13		fscanf(fpin,"%d",&Nx4);
+14		fscanf(fpin,"%d",&Ny1);
+15		fscanf(fpin,"%d",&Ny2);
+16		fscanf(fpin,"%d",&Ny3);
+17		fscanf(fpin,"%d",&Ny4);
+18		fscanf(fpin,"%lf",&Diff_l);
+19		fscanf(fpin,"%lf",&Diff_t);
+20		fscanf(fpin,"%lf",&rateD);
+21		fscanf(fpin,"%lf",&BCL);
+22		fscanf(fpin,"%lf",&kr_rate0);
+23		fscanf(fpin,"%lf",&kr_rate1);
+24		fscanf(fpin,"%lf",&ks_rate);
+25		fscanf(fpin,"%lf",&rategca);
+26		fscanf(fpin,"%lf",&ratef);
+27		fscanf(fpin,"%lf",&Istim_base);
+28		fscanf(fpin,"%d",&stim_sw);
+29		fscanf(fpin,"%d",&datas);
+30		for (ii = 0; ii < datas; ii++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(30,2)
+//   remark #17102: loop was not parallelized: not a parallelization candidate
+//   remark #15523: loop was not vectorized: loop control variable ii was found, but loop iteration count cannot be computed before executing the loop
+//
+//   LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(31,3)
+//      remark #17104: loop was not parallelized: existence of parallel dependence
+//      remark #15527: loop was not vectorized: function call to fscanf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(32,4) ]
+//   LOOP END
+//LOOP END
+31			for (i=0;i<NN;i++){
+32				fscanf(fpin,"%lf",&x0[ii][i]);
+33			}
+34		}
+35		fscanf(fpin,"%d",&div_num);
+36		fscanf(fpin,"%d",&write);
+37		fscanf(fpin,"%d",&reduce);
+38		fscanf(fpin,"%d",&outdata);
+39		fscanf(fpin,"%d",&outdata_plus);
+40		fscanf(fpin,"%d",&debug);
+41	
+42	}
+43	
+44	void input_init(FILE *fpin1, FILE *fpin2)
+45	{
+//INLINE REPORT: (input_init(FILE *, FILE *)) [2] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(45,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(45,1):remark #34051: REGISTER ALLOCATION : [input_init] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:45
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   15[ rax rdx rcx rbx rsi rdi r8-r15 zmm0]
+//        
+//    Routine temporaries
+//        Total         :     147
+//            Global    :      28
+//            Local     :     119
+//        Regenerable   :      27
+//        Spilled       :       9
+//        
+//    Routine stack
+//        Variables     :     304 bytes*
+//            Reads     :      40 [1.27e+01 ~ 12.7%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      32 bytes*
+//            Reads     :       7 [9.44e-01 ~ 0.9%]
+//            Writes    :      11 [2.29e-01 ~ 0.2%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+46	
+47		int i,j;
+48		int check1=0,check2=0;
+49		double init1[NN],init2[NN];
+50	
+51		printf("input init, middle point=%d\n",MEDIA_SITE/2);
+52	
+53		for (i=0;i<NN;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(53,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fscanf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(54,3) ]
+//LOOP END
+54			fscanf(fpin1,"%lf",&init1[i]);
+55		}
+56	
+57		for (i=0;i<NN;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(57,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fscanf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(58,3) ]
+//LOOP END
+58			fscanf(fpin2,"%lf",&init2[i]);
+59		}
+60	
+61		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(61,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//
+//   LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(64,4)
+//   <Predicate Optimized v1>
+//      remark #17104: loop was not parallelized: existence of parallel dependence
+//      remark #25422: Invariant Condition at line 68 hoisted out of this loop
+//      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//      remark #15346: vector dependence: assumed FLOW dependence between vmf[j][i] (66:5) and vmf[j][i] (68:19)
+//   LOOP END
+//
+//   LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(73,4)
+//   <Predicate Optimized v1>
+//      remark #17104: loop was not parallelized: existence of parallel dependence
+//      remark #25422: Invariant Condition at line 77 hoisted out of this loop
+//      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//      remark #15346: vector dependence: assumed FLOW dependence between vmf[j][i] (75:5) and vmf[j][i] (77:19)
+//   LOOP END
+//
+//   LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(64,4)
+//   <Predicate Optimized v2>
+//      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//      remark #25436: completely unrolled by 19  
+//   LOOP END
+//
+//   LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(73,4)
+//   <Predicate Optimized v2>
+//      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//      remark #25436: completely unrolled by 19  
+//   LOOP END
+//LOOP END
+62			if(utype[i]==1){
+63				if(check1==0) printf("EAD unit initial values\n");
+64				for (j=0;j<NN;j++){
+65					//var.u[j][i]=init2[j];
+66					vmf[j][i]=init2[j];
+67					//if(check1==0) printf("x[%d][%d] = %lf\n",j,i,var.u[j][i]);
+68					if(check1==0) printf("x[%d][%d] = %lf\n",j,i,vmf[j][i]);
+69				} check1++;
+70				printf("%d, ",i);
+71			} else if(utype[i]==0){
+72				if(check2==0) printf("noEAD unit initial values\n");
+73				for (j=0;j<NN;j++){
+74					//var.u[j][i]=init1[j];
+75					vmf[j][i]=init1[j];
+76					//if(check2==0) printf("x[%d][%d] = %lf\n",j,i,var.u[j][i]);
+77					if(check2==0) printf("x[%d][%d] = %lf\n",j,i,vmf[j][i]);
+78				} check2++;
+79			}
+80		}
+81		printf("\n");
+82	
+83	}
+84	
+85	void val_consts(FILE *fp1)
+86	{
+//INLINE REPORT: (val_consts(FILE *)) [3] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(86,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(86,1):remark #34051: REGISTER ALLOCATION : [val_consts] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:86
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   30[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm15]
+//        
+//    Routine temporaries
+//        Total         :    1451
+//            Global    :     450
+//            Local     :    1001
+//        Regenerable   :     433
+//        Spilled       :       3
+//        
+//    Routine stack
+//        Variables     :     296 bytes*
+//            Reads     :      20 [2.76e+00 ~ 2.8%]
+//            Writes    :      62 [0.00e+00 ~ 0.0%]
+//        Spills        :     136 bytes*
+//            Reads     :      58 [4.93e-01 ~ 0.5%]
+//            Writes    :      58 [4.93e-01 ~ 0.5%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+87		int i,w,c;
+88		double v_old,dvdt,dvdt_new;
+89	
+90		// Cell Geometry */
+91			radius = 0.0011;
+92			length = 0.01;
+93			//del_x = length;
+94			del_x = 2.0*length;
+95			//CapHV = 153.4;  // Membrane Capacitance (pF) : K05 model
+96			CapHV = 175.0;  // Membrane Capacitance (pF)
+97			//vcell = 38.0*0.000000000001; // Cell Volume:3.801e-5 (uL)
+98			//vi = vcell*0.68;      // Myoplasm volume (uL) = 68% for Cell volume
+99			//vup = vcell*0.0552;    // NSR volume (uL)
+100			//vrel = vcell*0.0048;    // JSR volume (uL)
+101			vmyo = 16.404; 		// Cytoplasmic volume (pico L)
+102			vsr  =  1.094;		// Sarcoplasmic volume (pico L)
+103			vss  =  0.05468;	// Subspace volume (pico L)
+104	
+105			vr1 = CapHV/F/(vmyo + vss);
+106			vr2 = CapHV/zca/F/vmyo;
+107			vr6 = CapHV/zca/F/vss;
+108			vr3 = vsr/vmyo;
+109			vr4 = vsr/vss;
+110			vr5 = vmyo/vss;
+111	
+112		// invariant constant
+113			RTonF = R*T/F;
+114			RTon2F = R*T/zca/F;
+115			RTon4F = R*T/zca/zca/F/F;
+116	
+117		// Extracellular Concentrations
+118			Nao = 140.0;    // (mM) 
+119			Ko = 5.4;      // (mM)
+120			Cao = 2.0;     // (mM)
+121	
+122			//prnak = 0.01833;     // Na/K Permiability Ratio
+123			prnak = 0.03;     // Na/K Permiability Ratio
+124			pkna = 0.12;     // Na/K Permiability Ratio
+125	
+126		// cell types
+127	
+128			if(simtype==0){ // only Endo cell unit myofiber
+129				for(i=0;i<MEDIA_SITE;i++) celltype[i]=0;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(129,4)
+//   remark #25408: memset generated
+//   remark #17108: loop was not parallelized: insufficient computational work
+//   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+//LOOP END
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(129,4):remark #34026: call to memset implemented as a call to optimized library version
+130			} else if(simtype==1){ // only Epi cell unit myofiber
+131				for(i=0;i<MEDIA_SITE;i++) celltype[i]=1;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(131,4)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+132			} else if(simtype==2){ // only Mid cell unit myofiber
+133				for(i=0;i<MEDIA_SITE;i++) celltype[i]=2;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(133,4)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+134			} else if(simtype==5){ // Transmural case (#100 units)
+135				for(i=0;i<15;i++) celltype[i]=0;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(135,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(135,4)
+//   remark #17108: loop was not parallelized: insufficient computational work
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(135,4)
+//<Remainder loop for vectorization>
+//LOOP END
+136				for(i=15;i<70;i++) celltype[i]=2;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(136,4)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(136,4)
+//   remark #17108: loop was not parallelized: insufficient computational work
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(136,4)
+//<Remainder loop for vectorization>
+//LOOP END
+137				for(i=70;i<100;i++) celltype[i]=1;	
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(137,4)
+//   remark #17108: loop was not parallelized: insufficient computational work
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(137,4)
+//<Remainder loop for vectorization>
+//   remark #25436: completely unrolled by 6  
+//LOOP END
+138			}
+139		
+140		// parameter setup information
+141		printf("Nx1=%d,Ny1=%d,Nx2=%d,Ny2=%d,Nx3=%d,Ny3=%d,Nx4=%d,Ny4=%d\n",Nx1,Ny1,Nx2,Ny2,Nx3,Ny3,Nx4,Ny4);
+142	
+143		for(i=0;i<MEDIA_SITE;i++) utype[i]=0;
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(143,2)
+//   remark #25408: memset generated
+//   remark #17108: loop was not parallelized: insufficient computational work
+//   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+//LOOP END
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(143,2):remark #34026: call to memset implemented as a call to optimized library version
+144	
+145		switch(cluster){
+146			case 2: // 2 cluster (20path)
+147				for(i=0 ; i < MEDIA_SITE; i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(147,4)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//   remark #15346: vector dependence: assumed ANTI dependence between Nx2 (148:5) and utype[i] (150:8)
+//LOOP END
+148					if( ((i >= Ny1*DX && i < Ny2*DX) && (i%DX >= Nx1 && i%DX < Nx2 )) || 
+149					  	((i >= Ny3*DX && i < Ny4*DX) && (i%DX >= Nx3 && i%DX < Nx4 )) 
+150					) {utype[i]=1;	c++;}
+151				}
+152			break;
+153		}
+154	
+155		// Fast sodium current
+156			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(156,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+157				//Gnaf[i] = 7.8;	// (mS/uF). : K05 model
+158				Gnaf[i] = 14.838;	// (mS/uF). : TP06 original
+159			}
+160			
+161		// Transient outward current
+162			//pnato = 0.043;
+163			
+164			//dVgq0= -12.0; //gating variables (q/r) % Endo (from Bernus 2002 model)
+165			//dVgq1 = 0.0; //gating variables (q/r) % Epi (default for Kurata 2005 model)
+166			//dVgq2 = -4.0; //gating variables (q/r) % Mid (from Bernus 2002 model)
+167	
+168			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(168,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+169				if(celltype[i]==0){
+170					//Gto[i] = 0.13;	// Endo (from Bernus 2002 model).
+171					Gto[i] = 0.073;		// Endo (nS/pF).
+172				} else if(celltype[i]==1){
+173					//Gto[i] = 0.4;		// Epi (default for Kurata 2005 model).
+174					Gto[i] = 0.294;		// Epi (nS/pF).
+175				} else if(celltype[i]==2){
+176					//Gto[i] = 0.35;	// Mid (from Bernus 2002 model).
+177					Gto[i] = 0.294;		// Mid (nS/pF).
+178				}
+179			}
+180	
+181		// Rapid delayed rectifier potassium current (Ikr)
+182			
+183			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(183,3)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//   remark #15346: vector dependence: assumed OUTPUT dependence between Gkr[i] (184:4) and gkr_rate[i] (188:5)
+//LOOP END
+184				Gkr[i] = 1.5*0.153*sqrt(Ko/5.4);	// (nS/pF)
+185				if(utype[i]==1){ // EAD case
+186					gkr_rate[i]=kr_rate1;
+187				} else {		// EAD case
+188					gkr_rate[i]=kr_rate0;
+189				}
+190			}
+191			printf("gkr_rate[%d]=%lf\n",0,gkr_rate[0]);
+192	
+193		// Slow delayed rectifier potassium current (Iks)
+194			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(194,3)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+//   remark #15346: vector dependence: assumed OUTPUT dependence between Gks[i] (196:5) and gks_rate[i] (203:5)
+//   remark #25438: unrolled without remainder by 16  
+//LOOP END
+195				if(celltype[i] == 0){
+196					Gks[i] = 0.4*0.392;	// Endo (nS/pF)
+197					gks_rate[i]=ks_rate;
+198				} else if(celltype[i] == 1){
+199					Gks[i] = 0.4*0.392;	// Epi (nS/pF)
+200					gks_rate[i]=ks_rate;
+201				} else if(celltype[i] == 2){
+202					Gks[i] = 0.4*0.098;	// Mid (nS/pF)
+203					gks_rate[i]=ks_rate;
+204				}
+205			}
+206			printf("gks_rate[%d]=%lf\n",0,gks_rate[0]);
+207		
+208		// L-type calcium current
+209			//kmfca = 0.00035;
+210			//Ecal = 52.8; // (mV)
+211			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(211,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+212				Gca[i] = 2.0*3.980E-5;
+213			}
+214	
+215		// Inward rectifier K current: Ik1
+216			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(216,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+217				Gk1[i] = 5.405;	// (nS/pF)
+218			}
+219			rategk1 = sqrt(Ko/5.4);
+220	
+221		// Sodium-Calcium Exchanger V-S
+222			kmnaex = 87.5;
+223			kmcaex = 1.38;
+224			rncx = 0.35;
+225			ksat = 0.1;
+226	
+227			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(227,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+228				if(celltype[i] == 0){
+229					kncx[i] = 1000.0*(1.0/1.1);	// Endo (based on O'Hara-Rudy 2011 model);
+230				} else {
+231					kncx[i] = 1000.0;			// Epi (default for Kurata 2005 model) or Mid;
+232				}
+233			}
+234			c1 = 1.0/(pow(kmnaex,3)+pow(Nao,3))/(kmcaex + Cao);
+235	
+236		// Sodium-Potassium Pump
+237			//kmnap = 10.0;
+238			//kmkp = 1.5;
+239			//nna = 1.5;
+240			kmna = 40.0;
+241			kmk  = 1.0;
+242	
+243			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(243,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+244				Gnak[i] = 2.724;	// (pA/pF)
+245			}
+246			//rhonak = (exp(Nao/67.3)-1.0)/7.0;
+247	
+248		// Sarcolemmal Ca Pump
+249			Gpca = 0.1238;		// Max. Ca current through sarcolemmal Ca pump (mS/uF)
+250			Km_pca = 0.0005;	// Half-saturation concentration of sarcolemmal Ca pump (mM)
+251	
+252		// plateau K current 
+253			Gkp = 0.0146;	// (nS/pF)
+254	
+255		// Ca Background Current 
+256			Gcab = 0.000592;	// (nS/pF)
+257	
+258		// Na Background Current 
+259			Gnab = 0.000290;	// (nS/pF)
+260	
+261		// calcium uptake via SERCA pump (Jup)
+262			kup = 0.00025;
+263			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(263,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+264				Gup[i] = 0.6*0.006375;	// maximal uptake conductance (mM)
+265			}
+266	
+267		// SR calcium release flux, via RyR (Jrel)
+268		/*	nrel = 3.0;
+269			for(i=0;i<MEDIA_SITE;i++){
+270				if(celltype[i]!=2){
+271					Grel[i] = 50.0;	// Epi (default for Kurata 2005 model) or Endo
+272				} else {
+273					Grel[i] = 50.0*1.7;	// Mid (based on O'Hara-Rudy 2011 model)
+274				}
+275			}
+276			tau_dr = 1.0*4.0;
+277			tau_df = 4.0*4.0;
+278		*/
+279			for(i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//   remark #17109: LOOP WAS AUTO-PARALLELIZED
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//<Remainder loop for vectorization>
+//   remark #15301: REMAINDER LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//<Remainder loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//<Peeled loop for vectorization>
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//   remark #15300: LOOP WAS VECTORIZED
+//LOOP END
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(279,3)
+//<Remainder loop for vectorization>
+//   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+//LOOP END
+280				Grel[i] = 0.102;	// (mM/ms)
+281			}
+282			//vrel = 0.102; // (mM/ms)
+283			k1_prime = 0.15;   // R to O and RI to I Irel transition rate (1/mM^2/ms)
+284			k2_prime = 0.045;  // O to I and R to RI Irel transition rate (1/mM/ms)
+285			relk3 = 0.060;                // O to R and I to RI Irel transition rate (1/ms)
+286			relk4 = 0.005;                // I to O and RI to I Irel transition rate (1/ms)
+287			EC = 1.5;  // Ca_sr half-saturation constant of kcasr (mM)
+288			maxsr = 2.5;
+289			minsr = 1.0;
+290	
+291		// Translocation of Ca Ions from cytoplasm to subspace
+292			//tau_tr = 180.0;	// Time constant of Ca transfer from NSR to JSR (ms)
+293			vxfer = 0.0038;   	// Maximal Ixfer conductance (mM/ms)
+294	
+295	
+296		// Ca leakage from cytoplasm to subspace 
+297			//pleak = 0.00026;	// K05 model case
+298			pleak = 0.00036;	// Maximal Ileak conductance (mM/ms)
+299	
+300		//Troponin Ca Buffering (in Myoplasm)
+301		//	concTc = 0.07;
+302		//	rftn = 10.0;
+303		//	kftc = 40.0*rftn;
+304		//	kbtc = 0.02*rftn;
+305			
+306		//Calmodulin Ca Buffering (in Myoplasm) --- Rapid Buffering Approximation
+307		/*	for(i=0;i<MEDIA_SITE;i++){
+308				if(celltype[i] != 1){
+309					conccm[i] = 0.05*(1.0/1.3);  //% Mid or Endo (based on O'Hara-Rudy 2011 model)
+310				} else {
+311					conccm[i] = 0.05;   //% Epi (default for Kurata 2005 model)
+312				}
+313			}
+314			kdcm = 0.00238;	// % Kd for Ca-binding to Calmoduline 
+315		*/
+316		//Calsequestrin Ca Buffering (in SR) --- Rapid Buffering Approximation	
+317		/*
+318			conccq = 10.0;     // Max. [Ca] buffered in CSQN (mM)
+319			kdcq = 0.8;     // % Kd for Ca-binding to Calsequestrin
+320		*/
+321		// Myoplasmic Ca Ion Concentration Changes 
+322			bufc = 0.20;	// Max. [Ca] buffer concentration (mM)
+323			kcai = 0.001;	// Cai half-saturation constant for cytoplasmic buffer (mM)
+324	
+325			bufsr = 10.0;	// Total sarcoplasmic buffer concentration (mM)
+326			kcasr = 0.30;	// Ca_sr half-saturation constant for sarcoplasmic buffer (mM)
+327	
+328			bufss = 0.40000;	// Total subspace buffer concentration (mM)
+329			kcass = 0.00025;	// Ca_ss half-saturation constant for subspace buffer (mM)
+330	
+331	}
+332	
+333	void utype_data(FILE *fp17)
+334	{
+//INLINE REPORT: (utype_data(FILE *)) [4] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(334,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(334,1):remark #34051: REGISTER ALLOCATION : [utype_data] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:334
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    8[ rax rdx rsi rdi r12-r14 zmm0]
+//        
+//    Routine temporaries
+//        Total         :      26
+//            Global    :      10
+//            Local     :      16
+//        Regenerable   :      11
+//        Spilled       :       3
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+335	
+336		int i,j;
+337	
+338		fprintf(fp17,"%lf ",0.0);
+339		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(339,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(340,3) ]
+//LOOP END
+340			fprintf(fp17,"%d ",utype[i]);
+341		}
+342		fprintf(fp17,"\n");
+343	
+344	} 
+345	
+346	void vm_data(FILE *fp5, double time)
+347	{
+//INLINE REPORT: (vm_data(FILE *, double)) [5] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(347,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(347,1):remark #34051: REGISTER ALLOCATION : [vm_data] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:347
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    9[ rax rdx rcx rsi rdi r12-r14 zmm0]
+//        
+//    Routine temporaries
+//        Total         :      27
+//            Global    :      11
+//            Local     :      16
+//        Regenerable   :       8
+//        Spilled       :       4
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       8 bytes*
+//            Reads     :       1 [1.24e-04 ~ 0.0%]
+//            Writes    :       1 [1.24e-04 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+348	
+349		int i,j;
+350	
+351		fprintf(fp5,"%lf ",time);
+352		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(352,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(354,3) ]
+//LOOP END
+353			//fprintf(fp5,"%lf ",var.u[0][i]);
+354			fprintf(fp5,"%lf ",vmf[0][i]);
+355		}
+356		fprintf(fp5,"\n");
+357	
+358	} 
+359	
+360	void out_data(FILE *fp7, FILE *fp8, FILE *fp9, FILE *fp10, FILE *fp11, FILE *fp12, double time)
+361	{
+//INLINE REPORT: (out_data(FILE *, FILE *, FILE *, FILE *, FILE *, FILE *, double)) [6] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(361,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(361,1):remark #34051: REGISTER ALLOCATION : [out_data] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:361
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   13[ rax rdx rcx rbx rsi rdi r8-r9 r12-r15 zmm0]
+//        
+//    Routine temporaries
+//        Total         :     103
+//            Global    :      27
+//            Local     :      76
+//        Regenerable   :      34
+//        Spilled       :       9
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      32 bytes*
+//            Reads     :      12 [2.73e-04 ~ 0.0%]
+//            Writes    :       5 [1.14e-04 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+362		int i;
+363	
+364	// ikr
+365		fprintf(fp7,"%lf ",time);
+366		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(366,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(367,3) ]
+//LOOP END
+367			fprintf(fp7,"%lf ",ikr[i]);
+368		}
+369		fprintf(fp7,"\n");
+370	
+371	// iks
+372		fprintf(fp8,"%lf ",time);
+373		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(373,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(374,3) ]
+//LOOP END
+374			fprintf(fp8,"%lf ",iks[i]);
+375		}
+376		fprintf(fp8,"\n");
+377	
+378	// ical
+379		fprintf(fp9,"%lf ",time);
+380		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(380,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(381,3) ]
+//LOOP END
+381			fprintf(fp9,"%lf ",ical[i]);
+382		}
+383		fprintf(fp9,"\n");
+384	
+385	// incx
+386		fprintf(fp10,"%lf ",time);
+387		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(387,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(388,3) ]
+//LOOP END
+388			fprintf(fp10,"%lf ",jncx[i]);
+389		}
+390		fprintf(fp10,"\n");
+391	
+392	// inak
+393		fprintf(fp11,"%lf ",time);
+394		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(394,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(395,3) ]
+//LOOP END
+395			fprintf(fp11,"%lf ",inak[i]);
+396		}
+397		fprintf(fp11,"\n");
+398	
+399	// Cai
+400		fprintf(fp12,"%lf ",time);
+401		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(401,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(403,3) ]
+//LOOP END
+402			//fprintf(fp12,"%lf ",var.u[12][i]);
+403			fprintf(fp12,"%lf ",vmf[14][i]);
+404		}
+405		fprintf(fp12,"\n");
+406	
+407	}
+408	
+409	//void out_data_plus(FILE *fp13, FILE *fp14, FILE *fp15, FILE *fp16, double time)
+410	void out_data_plus(FILE *fp13, FILE *fp14, double time)
+411	{
+//INLINE REPORT: (out_data_plus(FILE *, FILE *, double)) [7] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(411,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(411,1):remark #34051: REGISTER ALLOCATION : [out_data_plus] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:411
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :   10[ rax rdx rcx rbx rsi rdi r12-r14 zmm0]
+//        
+//    Routine temporaries
+//        Total         :      43
+//            Global    :      15
+//            Local     :      28
+//        Regenerable   :      14
+//        Spilled       :       5
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :       8 bytes*
+//            Reads     :       2 [1.31e-04 ~ 0.0%]
+//            Writes    :       1 [6.55e-05 ~ 0.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+412		int i;
+413	
+414	// detailed Vm data
+415		fprintf(fp13,"%lf ",time);
+416		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(416,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(418,3) ]
+//LOOP END
+417			//fprintf(fp13,"%lf ",var.u[0][i]);
+418			fprintf(fp13,"%lf ",vmf[0][i]);
+419		}
+420		fprintf(fp13,"\n");
+421	// ito
+422		fprintf(fp14,"%lf ",time);
+423		for (i=0;i<MEDIA_SITE;i++){
+//
+//LOOP BEGIN at /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(423,2)
+//   remark #17104: loop was not parallelized: existence of parallel dependence
+//   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(424,3) ]
+//LOOP END
+424			fprintf(fp14,"%lf ",jrel[i]);
+425		}
+426		fprintf(fp14,"\n");
+427	
+428	/*	
+429	// ik1
+430		fprintf(fp15,"%lf ",time);
+431		for (i=0;i<MEDIA_SITE;i++){
+432			fprintf(fp15,"%lf ",ik1.ik[i]);
+433		}
+434		fprintf(fp15,"\n");
+435	
+436	// ipca
+437		fprintf(fp16,"%lf ",time);
+438		for (i=0;i<MEDIA_SITE;i++){
+439			fprintf(fp16,"%lf ",ipca.ca[i]);
+440		}
+441		fprintf(fp16,"\n");
+442	*/ 
+443	}
+444	
+445	void ECG_data(FILE *fp18, double time, double ECG)
+446	{
+//INLINE REPORT: (ECG_data(FILE *, double, double)) [8] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(446,1)
+//
+///home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c(446,1):remark #34051: REGISTER ALLOCATION : [ECG_data] /home/tsumoto/work/2D_monodomain/TP06_model/2cluster_ver2023.2/src/vars_para.c:446
+//
+//    Hardware registers
+//        Reserved     :    2[ rsp rip]
+//        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+//        Callee-save  :    6[ rbx rbp r12-r15]
+//        Assigned     :    7[ rax rdx rsi rdi r14 zmm0-zmm1]
+//        
+//    Routine temporaries
+//        Total         :      20
+//            Global    :       9
+//            Local     :      11
+//        Regenerable   :       5
+//        Spilled       :       3
+//        
+//    Routine stack
+//        Variables     :       0 bytes*
+//            Reads     :       0 [0.00e+00 ~ 0.0%]
+//            Writes    :       0 [0.00e+00 ~ 0.0%]
+//        Spills        :      16 bytes*
+//            Reads     :       2 [8.00e+00 ~ 8.0%]
+//            Writes    :       2 [8.00e+00 ~ 8.0%]
+//    
+//    Notes
+//    
+//        *Non-overlapping variables and spills may share stack space,
+//         so the total stack size might be less than this.
+//    
+//
+447	
+448		fprintf(fp18,"%lf %lf\n",time,ECG);
+449	
+450	}
